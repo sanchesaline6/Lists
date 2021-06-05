@@ -1,3 +1,5 @@
+package lists;
+
 import java.util.*;
 
 public class ExerciciosPropostosListas {

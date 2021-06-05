@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package lists;
 
 public class Gato implements Comparable<Gato> {
 
@@ -38,7 +38,7 @@ public class Gato implements Comparable<Gato> {
 
     @Override
     public String toString() {
-        return "Gato{" +
+        return "lists.Gato{" +
                 "nome='" + nome + '\'' +
                 ", idade=" + idade +
                 ", cor='" + cor + '\'' +

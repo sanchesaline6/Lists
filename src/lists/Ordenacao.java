@@ -1,3 +1,5 @@
+package lists;
+
 import java.util.*;
 
 public class Ordenacao {
@@ -7,9 +9,9 @@ public class Ordenacao {
         * e ordene esta lista exibindo:
         * (nome - idade - cor);
         *
-        * Gato 1 = Jon, 18, preto
-        * Gato 2 = Simba, 6, tigrado
-        * Gato 3 = Jon, 12, amarelo
+        * lists.Gato 1 = Jon, 18, preto
+        * lists.Gato 2 = Simba, 6, tigrado
+        * lists.Gato 3 = Jon, 12, amarelo
         * */
 
         List<Gato> gatos = new ArrayList<>();
