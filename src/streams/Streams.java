@@ -1,6 +1,7 @@
 package streams;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class Streams {
     /*
@@ -79,34 +80,49 @@ public class Streams {
         }
 
         System.out.println("Ordem Número/Telefone");
-        Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(new ComparatorOrdemNumerica());
+
+        /* Implementação utilizando classe anônima*/
+        /*Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(new Comparator<Map.Entry<Integer, Contato>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Contato> o1, Map.Entry<Integer, Contato> o2) {
+                return Integer.compare(o1.getValue().getNumero(), o2.getValue().getNumero());
+            }
+        });*/
+
+        /*Implementação utilizando Functional Interface*/
+        /*Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(Comparator.comparing(
+                new Function<Map.Entry<Integer, Contato>, Integer>() {
+                    @Override
+                    public Integer apply(Map.Entry<Integer, Contato> contato) {
+                        return contato.getValue().getNumero();
+                    }
+                }));*/
+
+        /* Implementação utilizando lambda*/
+        Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(Comparator.comparing(
+                contato -> contato.getValue().getNumero()
+        ));
         set.addAll(contatos.entrySet());
         for(Map.Entry<Integer, Contato> entry: set){
             System.out.println(entry.getKey() + " - " + entry.getValue().getNumero() + ": " + entry.getValue().getNome());
         }
 
         System.out.println("Ordem nome do contato");
-        Set<Map.Entry<Integer, Contato>> set1 = new TreeSet<>(new ComparatorNomeContato());
+        /*Implementação utilizando classe anônima*/
+        /*Set<Map.Entry<Integer, Contato>> set1 = new TreeSet<>(new Comparator<Map.Entry<Integer, Contato>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Contato> o1, Map.Entry<Integer, Contato> o2) {
+                return o1.getValue().getNome().compareTo(o2.getValue().getNome());
+            }
+        });*/
+        /*Implementação utilizando lambda*/
+        Set<Map.Entry<Integer, Contato>> set1 = new TreeSet<>(Comparator.comparing(
+                contato -> contato.getValue().getNome()
+        ));
         set1.addAll(contatos.entrySet());
         for(Map.Entry<Integer, Contato> entry: set1){
             System.out.println(entry.getKey() + " - " + entry.getValue().getNumero() + ": " + entry.getValue().getNome());
         }
 
-    }
-
-    static class ComparatorOrdemNumerica implements Comparator<Map.Entry<Integer, Contato>>{
-
-        @Override
-        public int compare(Map.Entry<Integer, Contato> o1, Map.Entry<Integer, Contato> o2) {
-            return Integer.compare(o1.getValue().getNumero(), o2.getValue().getNumero());
-        }
-    }
-
-    static class ComparatorNomeContato implements Comparator<Map.Entry<Integer, Contato>>{
-
-        @Override
-        public int compare(Map.Entry<Integer, Contato> o1, Map.Entry<Integer, Contato> o2) {
-            return o1.getValue().getNome().compareTo(o2.getValue().getNome());
-        }
     }
 }
